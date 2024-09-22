@@ -1,11 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { EmailParserService } from './email-parser.service';
 
 @Controller('email-parser')
 export class EmailParserController {
-  constructor() {}
+  constructor(private readonly emailParserService: EmailParserService) {}
 
   @Post()
   parseEmail(@Body('path') emailFilePath: string) {
-    return;
+    return this.emailParserService.parseEmail(emailFilePath);
   }
 }
